@@ -1,0 +1,27 @@
+#!/bin/bash
+#o
+#e
+# bsub -q 1nw -J cascade < cascade-myrivet.sub
+source /afs/cern.ch/sw/lcg/external/MCGenerators/powhegbox/r197/slc4_amd64_gcc34/bin/setup.sh
+pwd=`pwd`
+echo $pwd
+name=$LS_JOBNAME
+seed=$LS_SEED
+
+ls -rtl 
+
+cp -rp /afs/cern.ch/work/s/sdooling/NP_CORRECTION/powheg/CT10_bornkt5_bornsupp250_5-10-2/powheg.input .
+
+TheSeed=${seed}
+Templatefile=powheg.input
+Targetfile=powheg-new.input
+sed s/MYSEED/${TheSeed}/ ${Templatefile} > ${Targetfile}
+cp powheg-new.input powheg.input
+
+/afs/cern.ch/sw/lcg/external/MCGenerators/powhegbox/r197/slc4_amd64_gcc34/bin/Dijet > ${name}.out
+
+rfcp ${name}.out /castor/cern.ch/user/s/sdooling/lhefiles_CT10_bornkt5_bornsupp250_5-10-2/
+mv *.lhe ${name}.lhe
+sed '$d' < ${name}.lhe > temp_${name}.lhe
+mv temp_${name}.lhe ${name}.lhe
+rfcp ${name}.lhe /castor/cern.ch/user/s/sdooling/lhefiles_CT10_bornkt5_bornsupp250_5-10-2/
