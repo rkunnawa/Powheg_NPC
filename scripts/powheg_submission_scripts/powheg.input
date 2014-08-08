@@ -1,8 +1,8 @@
-numevts 100000     ! number of events to be generated
+numevts 100     ! number of events to be generated
 ih1 1             ! hadron 1 (1 for protons, -1 for antiprotons)
 ih2 1             ! hadron 2 (1 for protons, -1 for antiprotons)
-ebeam1 3500d0     ! energy of beam 1
-ebeam2 3500d0     ! energy of beam 2
+ebeam1 1380d0     ! energy of beam 1 change from 3500d0 to 1380d0 to get 2.76 TeV
+ebeam2 1380d0     ! energy of beam 2 change from 3500d0 to 1380d0 to get 2.76 TeV
 
 bornktmin 5d0      ! (default 0d0) generation cut. Minimum kt in underlying Born
 #bornktmin 60d0      ! (default 0d0) generation cut. Minimum kt in underlying Born

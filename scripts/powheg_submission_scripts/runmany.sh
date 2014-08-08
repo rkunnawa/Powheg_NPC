@@ -17,7 +17,7 @@ for i in `seq 150 $njobs`; do
   echo $LS_SEED
   
 #  bsub -q 1nd -o /dev/null -J powheg < powheg.sub
-  bsub -q 1nw -J powheg < powheg.sub
+  bsub -q 1nd -J powheg < powheg.sub
 
 done  
 
